@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Junior Astronaut Mission Trainer - an educational space exploration game.">
+  <title>Junior Astronaut Mission Trainer</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="stars" aria-hidden="true"></div>
+  <header class="topbar">
+    <a class="brand" href="#" onclick="showScreen('welcome');return false;">
+      <span class="brand-icon">✦</span><span>ASTRO<span class="brand-accent">QUEST</span></span>
+    </a>
+    <div class="top-status"><span class="live-dot"></span> JUNIOR ASTRONAUT TRAINING</div>
+    <button class="ghost-btn" id="soundToggle" aria-label="Toggle sound">♫ Sound: Off</button>
+  </header>
+
+  <main>
+    <section id="welcome" class="screen active">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow">YOUR SPACE JOURNEY STARTS HERE</div>
+          <h1>Train today.<br><span>Explore tomorrow.</span></h1>
+          <p class="lead">Become a junior astronaut, prepare for a Moon or Mars mission, and learn how to keep a space outpost alive.</p>
+          <div class="feature-pills"><span>✦ Interactive training</span><span>◉ Moon & Mars missions</span><span>⌁ Resource strategy</span></div>
+          <form id="playerForm" class="panel form-panel">
+            <label for="astronautName">Astronaut name</label>
+            <input id="astronautName" maxlength="24" placeholder="Enter your name" required>
+            <label for="astronautAge">Age</label>
+            <input id="astronautAge" type="number" min="8" max="99" placeholder="Your age" required>
+            <button class="primary-btn full" type="submit">START YOUR TRAINING <span>→</span></button>
+          </form>
+        </div>
+        <div class="hero-art">
+          <div class="planet planet-blue"></div><div class="planet planet-ring"></div>
+          <div class="astronaut-big"><div class="helmet"><div class="visor"></div></div><div class="suit"><span class="suit-badge">A</span></div><div class="arm arm-left"></div><div class="arm arm-right"></div><div class="leg leg-left"></div><div class="leg leg-right"></div></div>
+          <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+          <div class="floating-label label-one">MISSION READY?</div><div class="floating-label label-two">★ 2026</div>
+        </div>
+      </div>
+      <p class="footer-note">An educational student project inspired by space exploration. Not an official NASA product.</p>
+    </section>
+
+    <section id="character" class="screen">
+      <div class="section-heading"><div class="eyebrow">STEP 01 / CREW IDENTITY</div><h2>Choose your astronaut</h2><p>Your training avatar will accompany you throughout the mission.</p></div>
+      <div class="character-options">
+        <button class="character-card selected" data-character="female"><div class="avatar avatar-female"><span>👩🏻‍🚀</span></div><strong>Female Astronaut</strong><small>Explorer • Scientist</small></button>
+        <button class="character-card" data-character="male"><div class="avatar avatar-male"><span>👨🏻‍🚀</span></div><strong>Male Astronaut</strong><small>Pilot • Explorer</small></button>
+      </div>
+      <div class="center-row"><button class="primary-btn" id="characterContinue">CONTINUE TO TRAINING →</button></div>
+    </section>
+
+    <section id="lesson" class="screen">
+      <button class="back-link" data-back="character">← Astronaut selection</button>
+      <div class="section-heading"><div class="eyebrow">MISSION BRIEFING / YOUR FIRST LESSON</div><h2>What will you investigate?</h2><p>Before choosing your destination, learn what astronaut training experiments are designed to teach.</p></div>
+      <article class="lesson-panel">
+        <div class="lesson-symbol">🔬</div>
+        <h3>Earth-based astronaut experiments</h3>
+        <p>Real astronauts practise important skills on Earth before travelling into space. In this training stage, you will explore six learning activities: how underwater buoyancy helps astronauts practise controlled movement, how objects behave in microgravity, how to respond calmly to mission alerts, how to report a crew health concern, which life-support checks are important before a spacewalk, and why spacecraft systems must be inspected regularly. Each activity introduces a basic science or safety idea that helps astronauts prepare for the challenges of space.</p>
+        <div class="lesson-points">
+          <div><strong>LEARNING GOAL</strong><span>Understand the science, teamwork and safety checks behind astronaut preparation.</span></div>
+          <div><strong>YOUR EXPERIMENT</strong><span>Complete six short knowledge challenges and earn experience points as you learn.</span></div>
+        </div>
+      </article>
+      <div class="center-row"><button class="primary-btn" id="lessonContinue">I UNDERSTAND — VIEW MISSION MAP →</button></div>
+    </section>
+
+    <section id="map" class="screen">
+      <div class="dashboard-head"><div><div class="eyebrow">WELCOME TO THE ASTRONAUT ACADEMY</div><h2 id="welcomeName">Hello, Astronaut!</h2><p>Complete each stage to unlock your next mission.</p></div><div class="rank-card"><span>YOUR RANK</span><strong>CADET</strong><small id="totalScore">0 XP</small></div></div>
+      <div class="progress-track"><div id="overallProgress" class="progress-fill"></div></div>
+      <div class="stage-map">
+        <article class="stage-node unlocked" id="stageNode1"><div class="node-number">01</div><div class="node-icon">🌍</div><div><h3>Earth Training</h3><p>Learn the astronaut basics</p><span class="node-status">AVAILABLE NOW</span></div><button class="node-btn" data-stage="1">ENTER →</button></article>
+        <div class="map-connector"></div>
+        <article class="stage-node locked" id="stageNode2"><div class="node-number">02</div><div class="node-icon">🌙</div><div><h3>Mission Selection</h3><p>Choose Moon or Mars</p><span class="node-status">LOCKED</span></div><button class="node-btn" data-stage="2" disabled>LOCKED</button></article>
+        <div class="map-connector"></div>
+        <article class="stage-node locked" id="stageNode3"><div class="node-number">03</div><div class="node-icon">🚀</div><div><h3>Space Travel</h3><p>Prepare your spacecraft</p><span class="node-status">LOCKED</span></div><button class="node-btn" data-stage="3" disabled>LOCKED</button></article>
+        <div class="map-connector"></div>
+        <article class="stage-node locked" id="stageNode4"><div class="node-number">04</div><div class="node-icon">🪐</div><div><h3>Mission Execution</h3><p>Manage your outpost</p><span class="node-status">LOCKED</span></div><button class="node-btn" data-stage="4" disabled>LOCKED</button></article>
+      </div>
+    </section>
+
+    <section id="stageBriefing" class="screen">
+      <button class="back-link" id="briefingBack">← Mission map</button>
+      <div class="section-heading"><div class="eyebrow" id="briefingEyebrow">MISSION LESSON / PREPARATION</div><h2 id="briefingTitle">Learn before you launch</h2><p id="briefingIntro">Read the science behind this stage before beginning the activity.</p></div>
+      <article class="lesson-panel stage-lesson-panel">
+        <div class="lesson-symbol" id="briefingSymbol">🔬</div>
+        <h3 id="briefingSubheading">Mission science briefing</h3>
+        <p id="briefingParagraph"></p>
+        <div class="lesson-points">
+          <div><strong>LEARNING OBJECTIVE</strong><span id="briefingObjective"></span></div>
+          <div><strong>WHAT YOU WILL DO</strong><span id="briefingTask"></span></div>
+        </div>
+      </article>
+      <div class="center-row"><button class="primary-btn" id="briefingContinue">START THIS MISSION →</button></div>
+    </section>
+
+    <section id="training" class="screen">
+      <button class="back-link" data-back="map">← Mission map</button>
+      <div class="section-heading"><div class="eyebrow">STAGE 01 / EARTH TRAINING</div><h2>Build your astronaut skills</h2><p>Complete the training checks to prepare for your mission.</p></div>
+      <div class="training-grid" id="trainingGrid"></div>
+      <div class="center-row"><button class="primary-btn" id="finishTraining" disabled>COMPLETE EARTH TRAINING →</button></div>
+    </section>
+
+    <section id="mission" class="screen">
+      <button class="back-link" data-back="map">← Mission map</button>
+      <div class="section-heading"><div class="eyebrow">STAGE 02 / MISSION SELECTION</div><h2>Where will you explore?</h2><p>Choose your destination. Each world has different environmental challenges.</p></div>
+      <div class="destination-grid">
+        <button class="destination-card moon" data-mission="moon"><div class="destination-planet">🌕</div><div class="destination-tag">MISSION A</div><h3>Lunar Expedition</h3><p>Explore the Moon, collect samples and prepare a safe lunar habitat.</p><span class="select-destination">SELECT MOON →</span></button>
+        <button class="destination-card mars" data-mission="mars"><div class="destination-planet">🔴</div><div class="destination-tag">MISSION B</div><h3>Mars Expedition</h3><p>Prepare for dust storms, protect your crew and explore the Red Planet.</p><span class="select-destination">SELECT MARS →</span></button>
+      </div>
+      <div id="missionTraining" class="mission-training hidden"></div>
+    </section>
+
+    <section id="travel" class="screen">
+      <button class="back-link" data-back="map">← Mission map</button>
+      <div class="section-heading"><div class="eyebrow">STAGE 03 / SPACE TRAVEL</div><h2>Journey through space</h2><p>Complete the flight checks before entering your destination's orbit.</p></div>
+      <div class="travel-scene"><div class="travel-earth">🌍</div><div class="travel-path"><span>✦</span><span>✦</span><span>✦</span></div><div class="travel-ship">🚀</div><div class="travel-destination" id="travelDestination">🌕</div></div>
+      <div class="travel-checks" id="travelChecks"></div>
+      <div class="center-row"><button class="primary-btn" id="launchMission" disabled>ENTER ORBIT →</button></div>
+    </section>
+
+    <section id="outpost" class="screen">
+      <button class="back-link" data-back="map">← Mission map</button>
+      <div class="section-heading"><div class="eyebrow">STAGE 04 / MISSION EXECUTION</div><h2 id="outpostTitle">Keep your outpost alive</h2><p>Make smart decisions. Your crew depends on the resources you manage.</p></div>
+      <div class="outpost-scene"><div class="base-building">🏠</div><div class="base-solar">▰ ▰ ▰</div><div class="base-astronaut">🧑🏻‍🚀</div><div class="base-plant">🌱</div><div class="base-planet" id="basePlanet">🌕</div></div>
+      <div class="resource-grid" id="resourceGrid"></div>
+      <div class="decision-panel panel">
+        <div class="decision-top"><span class="eyebrow">OUTPOST DECISION</span><span id="decisionCount">DECISION 1 / 4</span></div>
+        <h3 id="decisionQuestion">A dust storm is approaching. What should you do?</h3>
+        <p id="decisionHint">Choose the safest option for your crew.</p>
+        <div id="decisionOptions" class="decision-options"></div>
+        <div id="decisionFeedback" class="feedback" aria-live="polite"></div>
+      </div>
+    </section>
+
+    <section id="complete" class="screen">
+      <div class="completion-card">
+        <div class="trophy">🏆</div><div class="eyebrow">MISSION REPORT / SUCCESS</div><h2>Mission accomplished,<br><span id="completeName">Astronaut!</span></h2>
+        <p id="completeMessage">You completed your space exploration mission.</p>
+        <div class="certificate">
+          <div class="certificate-stars">✦ ✧ ✦</div><div class="certificate-title">JUNIOR ASTRONAUT</div><div class="certificate-sub">MISSION COMPLETION CERTIFICATE</div>
+          <div class="certificate-name" id="certificateName">ASTRONAUT</div><div class="certificate-line"></div>
+          <p>has successfully completed the</p><strong id="certificateMission">LUNAR EXPEDITION</strong>
+          <div class="certificate-footer"><span>ASTROQUEST ACADEMY</span><span id="certificateScore">0 XP</span></div>
+        </div>
+        <div class="center-row"><button class="primary-btn" id="downloadCertificate">DOWNLOAD CERTIFICATE ↓</button><button class="secondary-btn" id="playAgain">PLAY AGAIN ↻</button></div>
+      </div>
+    </section>
+  </main>
+  <script src="js/app.js"></script>
+</body>
+</html>
